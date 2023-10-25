@@ -2,34 +2,34 @@
 
 /**
   * print_integers - print any integer
-  * @num: The integer to print
-  * Return: printed - the number of integers printed
+  * @myInt: The integer to print
+  * Return: printedChars - the number of integers printed
   */
 
-int print_integers(int num)
+int print_integers(int myInt)
 {
-	char buffer[32];
-	int printed = 0;
+	char myBuffer[11];
+	int printedChars = 0;
 	int a = 0, n;
 
-	if (num < 0)
+	if (myInt < 0)
 	{
 		_putchar('-');
-		printed++;
-		num = -num;
+		myInt *= -1;
+		printedChars++;
 	}
 
-	while (num > 0)
+	while (myInt > 0)
 	{
-		buffer[a++] = '0' + (num % 10);
-		num /= 10;
-		printed++;
+		myBuffer[a++] = myInt % 10;
+		myInt /= 10;
 	}
 
 	for (n = a - 1; n >= 0; n--)
 	{
-		_putchar(buffer[n]);
+		_putchar ('0' + myBuffer[n]);
+		printedChars++;
 	}
 
-	return (printed);
+	return (printedChars);
 }

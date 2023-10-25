@@ -8,61 +8,46 @@
 
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int count = 0;
+	va_list myVariableList;
+	int printedChars = 0;
+	int myInt;
+	char *myString;
+	char myChr;
 
-	va_start(args, format);
-
-	while (*format != '\0')
+	va_start(myVariableList, format);
+	for (char *myPtr = format; *myPtr != NULL; myPtr++)
 	{
-		if (*format == '%')
+		if (*myPtr == '%')
 		{
-			format++;
-			if (*format == '%')
+			switch (*(++myPtr))
 			{
-				_putchar('%');
-				count++;
-			}
-
-			else if (*format == 'c')
-			{
-				int ch = va_arg(args, int);
-
-				_putchar(ch);
-				count++;
-			}
-
-			else if (*format == 's')
-			{
-				char *str = va_arg(args, char*);
-
-				while (*str != '\0')
-				{
-					_putchar(*str);
-					str++;
-					count++;
-				}
-			}
-
-			else if (*format == 'd' || *format == 'i')
-			{
-				int num = va_arg(args, int);
-
-				int printed = print_integers(num);
-				return (printed);
+				case '%':
+					printedChars += putchar('%');
+					printedChars++;
+					break;
+				case 'c':
+					myChr = va_arg(myVariableList, int);
+					printedChars += putchar(myChr);
+					break;
+				case 'i':
+					myInt = va_arg(myVariableList, int);
+					printedChars += print_integers(myInt);
+					break;
+				case 'd':
+					myInt = va_arg(myVariableList, int);
+					printedChars += print_integers(myInt);
+					break;
+				case 's':
+					myString = va_arg(myVariableList, char*);
+					printedChars += print_chars(myString);
+					break;
 			}
 		}
 
 		else
 		{
-			_putchar(*format);
-			count++;
+			printedChars += putchar(*myPtr);
 		}
-
-		format++;
 	}
-
-	va_end(args);
-
-	return (count);
+	return (printedChars);
 }
