@@ -24,7 +24,6 @@ int _printf(const char *format, ...)
 			{
 				case '%':
 					printedChars += _putchar('%');
-					printedChars++;
 					break;
 				case 'c':
 					myChr = va_arg(myVariableList, int);
