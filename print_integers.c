@@ -8,7 +8,7 @@
 
 int print_integers(int myInt)
 {
-	char myBuffer[11];
+	char myBuffer[32];
 	int printedChars = 0;
 	int a = 0, n;
 
