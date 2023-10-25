@@ -16,7 +16,7 @@ int print_chars(char *myString)
 
 	while (*myString != NULL)
 	{
-		printedChars += _putchar(*myString++);
+		printedChars += putchar(*myString++);
 	}
 
 	return (printedChars);
@@ -36,7 +36,7 @@ int print_integers(int myInt)
 
 	if (myInt < 0)
 	{
-		printedChars += _putchar('-');
+		printedChars += putchar('-');
 		myInt *= -1;
 	}
 
@@ -48,7 +48,7 @@ int print_integers(int myInt)
 
 	for (n = a - 1; n >= 0; n--)
 	{
-		printedChars += _putchar ('0' + myBuffer[n]);
+		printedChars += putchar ('0' + myBuffer[n]);
 	}
 
 	return (printedChars);
@@ -77,12 +77,12 @@ int _printf(const char *format, ...)
 			switch (*(++myPtr))
 			{
 				case '%':
-					printedChars += _putchar('%');
+					printedChars += putchar('%');
 					printedChars++;
 					break;
 				case 'c':
 					myChr = va_arg(myVariableList, int);
-					printedChars += _putchar(myChr);
+					printedChars += putchar(myChr);
 					break;
 				case 'i':
 					myInt = va_arg(myVariableList, int);
@@ -101,7 +101,7 @@ int _printf(const char *format, ...)
 
 		else
 		{
-			printedChars += _putchar(*myPtr);
+			printedChars += putchar(*myPtr);
 		}
 	}
 	return (printedChars);
