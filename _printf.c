@@ -14,7 +14,6 @@ int _printf(const char *format, ...)
 	char *myString;
 	char myChr;
 	const char *myPtr;
-	int r_val;
 
 	va_start(myVariableList, format);
 	if (*format == '\0')
