@@ -16,6 +16,10 @@ int _printf(const char *format, ...)
 	const char *myPtr;
 
 	va_start(myVariableList, format);
+	if (*format == '\0')
+	{
+		return (-1);
+	}
 	for (myPtr = format; *myPtr != '\0'; myPtr++)
 	{
 		if (*myPtr == '%')
