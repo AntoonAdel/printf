@@ -53,5 +53,8 @@ int _printf(const char *format, ...)
 			printedChars += _putchar(*myPtr);
 		}
 	}
+
+	va_end(myVariableList);
+
 	return (printedChars);
 }
