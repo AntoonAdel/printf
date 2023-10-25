@@ -22,12 +22,12 @@ int _printf(const char *format, ...)
 			switch (*(++myPtr))
 			{
 				case '%':
-					printedChars += putchar('%');
+					printedChars += _putchar('%');
 					printedChars++;
 					break;
 				case 'c':
 					myChr = va_arg(myVariableList, int);
-					printedChars += putchar(myChr);
+					printedChars += _putchar(myChr);
 					break;
 				case 'i':
 					myInt = va_arg(myVariableList, int);
@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 
 		else
 		{
-			printedChars += putchar(*myPtr);
+			printedChars += _putchar(*myPtr);
 		}
 	}
 	return (printedChars);
