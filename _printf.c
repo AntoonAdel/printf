@@ -1,37 +1,73 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
-   * _printf - Receives the main string and all the necessary parameters to
-    * print a formated string
-     * @format: A string containing all the desired characters
-      * Return: A total count of the characters printed
-       */
+  * _printf - my own prrintf
+  * @format: The character or string or integer to print
+  * Return: count - the number of characters printed
+  */
+
 int _printf(const char *format, ...)
 {
-		int printed_chars;
-			conver_t f_list[] = {
-						{"c", print_char},
-								{"s", print_string},
-										{"%", print_percent},
-												{"d", print_integer},
-														{"i", print_integer},
-																{"b", print_binary},
-																		{"r", print_reversed},
-																				{"R", rot13},
-																						{"u", unsigned_integer},
-																								{"o", print_octal},
-																										{"x", print_hex},
-																												{"X", print_heX},
-																														{NULL, NULL}
-							};
-				va_list arg_list;
+	va_list myVariableList;
+	int printedChars = 0;
+	int myInt;
+	char *myString;
+	char myChr;
+	const char *myPtr;
+	int r_val;
 
-					if (format == NULL)
-								return (-1);
+	va_start(myVariableList, format);
+	if (*format == '\0')
+	{
+		return (-1);
+	}
+	for (myPtr = format; *myPtr != '\0'; myPtr++)
+	{
+		if (*myPtr == '%')
+		{
+			switch (*(++myPtr))
+			{
+				case '%':
+					printedChars += _putchar('%');
+					break;
+				case 'c':
+					myChr = va_arg(myVariableList, int);
+					printedChars += _putchar(myChr);
+					break;
+				case 'i':
+					myInt = va_arg(myVariableList, int);
+					r_val = print_integers(myInt);
+					if (r_val == -1)
+					{
+						return (-1);
+					}
+					printedChars += r_val;
+					break;
+				case 'd':
+					myInt = va_arg(myVariableList, int);
+					r_val = print_integers(myInt);
+					if (r_val == -1)
+					{
+						return (-1);
+					}
+					printedChars += r_val;
+					break;
+				case 's':
+					myString = va_arg(myVariableList, char*);
+					r_val = print_chars(myString);
+					if (r_val == -1)
+					{
+						return (-1);
+					}
+					printedChars += r_val;
+					break;
+			}
+		}
 
-						va_start(arg_list, format);
-							/*Calling parser function*/
-							printed_chars = parser(format, f_list, arg_list);
-								va_end(arg_list);
-									return (printed_chars);
+		else
+		{
+			printedChars += _putchar(*myPtr);
+		}
+	}
+	return (printedChars);
 }
