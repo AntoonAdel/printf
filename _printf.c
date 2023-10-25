@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	char *myString;
 	char myChr;
 	const char *myPtr;
+	int r_val;
 
 	va_start(myVariableList, format);
 	if (*format == '\0')
@@ -35,15 +36,30 @@ int _printf(const char *format, ...)
 					break;
 				case 'i':
 					myInt = va_arg(myVariableList, int);
-					printedChars += print_integers(myInt);
+					r_val = print_integers(myInt);
+					if (r_val == -1)
+					{
+						return (-1);
+					}
+					printedChars += r_val;
 					break;
 				case 'd':
 					myInt = va_arg(myVariableList, int);
-					printedChars += print_integers(myInt);
+					r_val = print_integers(myInt);
+					if (r_val == -1)
+					{
+						return (-1);
+					}
+					printedChars += r_val;
 					break;
 				case 's':
 					myString = va_arg(myVariableList, char*);
-					printedChars += print_chars(myString);
+					r_val = print_chars(myString);
+					if (r_val == -1)
+					{
+						return (-1);
+					}
+					printedChars += r_val;
 					break;
 			}
 		}
