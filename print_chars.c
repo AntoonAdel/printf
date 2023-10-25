@@ -9,11 +9,6 @@ int print_chars(char *myString)
 {
 	int printedChars = 0;
 
-	if (*myString == '\0')
-	{
-		return (-1);
-	}
-
 	while (*myString != '\0')
 	{
 		printedChars += _putchar(*myString++);

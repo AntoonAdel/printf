@@ -36,30 +36,15 @@ int _printf(const char *format, ...)
 					break;
 				case 'i':
 					myInt = va_arg(myVariableList, int);
-					r_val = print_integers(myInt);
-					if (r_val == -1)
-					{
-						return (-1);
-					}
-					printedChars += r_val;
+					printedChars += print_integers(myInt);
 					break;
 				case 'd':
 					myInt = va_arg(myVariableList, int);
-					r_val = print_integers(myInt);
-					if (r_val == -1)
-					{
-						return (-1);
-					}
-					printedChars += r_val;
+					printedChars += print_integers(myInt);
 					break;
 				case 's':
 					myString = va_arg(myVariableList, char*);
-					r_val = print_chars(myString);
-					if (r_val == -1)
-					{
-						return (-1);
-					}
-					printedChars += r_val;
+					printedChars += print_chars(myString);
 					break;
 			}
 		}
